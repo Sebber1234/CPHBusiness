@@ -50,6 +50,6 @@ void MethodTwo()
   if (weekEnd) {
     println("It's the weekend!");
   } else {
-    println("It's not weekend yet!:(");
+    println("It's not weekend yet!");
   }
 }
