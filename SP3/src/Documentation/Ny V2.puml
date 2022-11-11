@@ -1,0 +1,105 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+class Main{
+- static Nav nav
++ static void main()
+}
+
+
+class Nav {
++ File fileIO;
+- TextUI textUI;
++ ArrayList<Series> series
++ ArrayList<Movie> movies
++ void startMenu()
+- void mainMenu()
+- void searchByTitle()
+- void searchByCategory()
+- void addToWatched()
+- void addToSaved()
+- void login()
+- void logout()
+- void signup()
+}
+
+class FileIO {
++ ArrayList<String> readSeriesData()
++ ArrayList<String> readMovieData()
++ String readUserData(String username, String password)
++ void writeUserData(User u)
+}
+
+class TextUI {
+- Scanner scan
++ String getUserInput(String msg)
+
+}
+class User {
+- static int ID
+- int age
+- String username
+- String password
+- ArrayList<Movie> watchedMovies
+- ArrayList<Movie> savedMovies
++ User(String username String password, int age)
++ void setWatchedMovies(ArrayList watchedMovies)
++ void setSavedMovies(ArrayList SavedMovies)
++ ArrayList<Movie> getWatchedMovies()
++ ArrayList<Movie> getSavedMovies()
++ int getAge()
++ String getUsername()
++ String getPassword()
++ static int getID()
+}
+
+class Movie {
+- int year
++ Movie(String title, ArrayList categories, float rating, int year, int ID)
++ String getTitle()
++ int getYear()
++ play ()
+}
+
+class Series {
+- int startDate
+- int endDate
+- ArrayList Season[][]
++ Series(String title, ArrayList categories, float rating, int startDate, int endDate, int ID)
++ String getYear()
++ play()
+}
+
+abstract Content {
+- static int ID
+- String title
+- ArrayList<String> categories
+- Float rating
++ Content(String title, ArrayList categories, float rating, int ID)
++ int getID()
++ String getTitle()
++ ArrayList getCategories()
++ float getRating()
+}
+
+Main <-- Nav
+Nav <-- User
+Nav <-- Content
+Nav <-- TextUI
+Nav <-- FileIO
+Content <-- Movie
+Content <-- Series
+
+object movies.txt {
+title;categories[];rating;year
+}
+
+object series.txt {
+title;categories[];rating;startDate;endDate;season[]
+}
+object users.txt {
+username;password;age;watchedMovies[];savedMovies[]
+}
+
+@enduml

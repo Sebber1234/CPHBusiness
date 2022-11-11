@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+object StreamingTjeneste
+
+
+StreamingTjeneste *-- LoginPage
+LoginPage *-- CreateUser
+LoginPage "has a" *-- LoginIO
+User "has a"*-- LoginIO
+User *-- TextUI
+User *-- OptionsInput
+TextUI *-- Options
+TextUI "has a" *-- movies
+TextUI "has a" *-- Series
+StreamingTjeneste : + Main()
+CreateUser : + String username
+CreateUser : + String password
+CreateUser : + Users.txt
+LoginPage : + String UserInput()
+LoginPage : + getUserLogin()
+LoginPage : + CreateUser()
+LoginPage : + LoginUI()
+User : + FarvoriteMovies
+User : + seenMovies
+User : + unseenMovies
+User : + User(String name, String password)
+User : + String getFarvoriteMovies()
+User : + String getSeenMovies()
+LoginIO : + LoginIO()
+LoginIO *-- UserDatabase
+
+
+
+
+
+@enduml

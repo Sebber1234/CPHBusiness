@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+JflixControl -> startmenu : load startmenu
+JflixControl <- userinfo : load userinfo
+
+startmenu->userChoice: load userChoice
+
+userChoice ->startmenu:userlogin
+userChoice ->startmenu:usersignup
+
+startmenu->mainmenu:mainmenu()
+
+mainmenu->Database : search()
+mainmenu->Database : searchcategory()
+Database -> mainmenu : fileIO
+
+mainmenu <-Choices:play()
+mainmenu <-Choices:watchLater()
+mainmenu <-Choices:deleteContentFromList()
+
+Database->scanner :categorize()
+
+Database <-Choices:fileIO
+
+mainmenu<-userinfo : contentWatched()
+mainmenu<-userinfo : watchList()
+userinfo->JflixControl:userinfo
+
+@enduml

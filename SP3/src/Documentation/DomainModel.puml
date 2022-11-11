@@ -1,0 +1,75 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+ class VigiloTV
+
+ class StartMenu
+
+ StartMenu : + userLogin()
+ StartMenu : + userSignup()
+
+ class MainMenu
+ MainMenu : +search()
+ MainMenu : +SearchCategory()
+ MainMenu : +contentWatched()
+ MainMenu : +watchList()
+
+ class Userinfo
+ Userinfo : +userFileIo()
+
+
+ class User
+ User : -passWord
+ User : -userName
+ User : etc
+
+ class Database
+ Database : +FileIo()
+
+ class Choices
+ Choices : +play()
+ Choices : +watchLater()
+ Choices : +deleteContentFromList()
+
+ class Movie
+ Movie : +name
+ Movie : +year
+ Movie : +rating
+ Movie : etc
+
+ class movieScanner
+ movieScanner : +categorize()
+
+ class seriesScanner
+ seriesScanner : +categorize()
+
+ class series
+ series : +name
+ series : +year
+ series : +rating
+ series : etc
+
+ interface playable
+
+ movieScanner *-- Database
+ seriesScanner *-- Database
+ Movie *-- movieScanner
+ series *-- seriesScanner
+
+ StartMenu *-- MainMenu
+ VigiloTV *-- StartMenu
+ MainMenu *-- Database
+ Database *-- Choices
+
+ User *--* Userinfo
+
+ StartMenu *--* Userinfo
+
+ playable *-- Movie
+ playable *-- series
+
+
+
+
+ @enduml
